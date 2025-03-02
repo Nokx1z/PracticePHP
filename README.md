@@ -114,7 +114,6 @@ Este proyecto está bajo la Licencia MIT - ver el archivo [LICENSE.md](LICENSE.m
 
 ## 📞 Contacto
 
-
 Link del proyecto: [https://github.com/DevCappa/ejercicios-logica-php](https://github.com/DevCappa/ejercicios-logica-php)
 
 ## 📌 Notas Adicionales
@@ -124,5 +123,144 @@ Link del proyecto: [https://github.com/DevCappa/ejercicios-logica-php](https://g
 - Los ejercicios están diseñados para ser educativos y prácticos
 - Se recomienda resolver los ejercicios en orden de dificultad
 
+## 📚 Ejemplos de Implementación
+
+### Ejemplo 1: Serie Fibonacci (Nivel Fácil)
+```php
+function fibonacci($n) {
+    if ($n <= 0) return [];
+    if ($n == 1) return [0];
+    
+    $fib = [0, 1];
+    for ($i = 2; $i < $n; $i++) {
+        $fib[] = $fib[$i-1] + $fib[$i-2];
+    }
+    return $fib;
+}
+
+// Uso:
+print_r(fibonacci(6)); // [0, 1, 1, 2, 3, 5]
+```
+
+### Ejemplo 2: Cifrado César (Nivel Intermedio)
+```php
+function cifrarCesar($texto, $desplazamiento) {
+    $resultado = '';
+    for ($i = 0; $i < strlen($texto); $i++) {
+        if (ctype_alpha($texto[$i])) {
+            $ascii = ord(strtoupper($texto[$i]));
+            $ascii = (($ascii - 65 + $desplazamiento) % 26) + 65;
+            $resultado .= chr($ascii);
+        } else {
+            $resultado .= $texto[$i];
+        }
+    }
+    return $resultado;
+}
+
+// Uso:
+echo cifrarCesar("HOLA MUNDO", 3); // KROD PXQGR
+```
+
+### Ejemplo 3: Torres de Hanoi (Nivel Difícil)
+```php
+class TorresHanoi {
+    private $movimientos = 0;
+    private $torres = [];
+
+    public function __construct($n) {
+        $this->torres = [
+            'A' => range($n, 1),
+            'B' => [],
+            'C' => []
+        ];
+    }
+
+    public function resolver($n, $origen = 'A', $auxiliar = 'B', $destino = 'C') {
+        if ($n == 1) {
+            $this->moverDisco($origen, $destino);
+            return;
+        }
+        $this->resolver($n - 1, $origen, $destino, $auxiliar);
+        $this->moverDisco($origen, $destino);
+        $this->resolver($n - 1, $auxiliar, $origen, $destino);
+    }
+}
+```
+
+## 🎯 Ejercicios Propuestos
+
+### Nivel Fácil
+1. **Contador de Vocales**
+   - Crear una función que cuente el número de vocales en una cadena
+   - Manejar mayúsculas y minúsculas
+   - Opcional: Contar cada vocal por separado
+
+2. **Suma de Dígitos**
+   - Sumar todos los dígitos de un número hasta obtener un solo dígito
+   - Ejemplo: 789 → 7+8+9=24 → 2+4=6
+
+3. **Invertir Palabras**
+   - Invertir el orden de las palabras en una frase
+   - Mantener los espacios y signos de puntuación
+   - Ejemplo: "Hola Mundo PHP" → "PHP Mundo Hola"
+
+### Nivel Intermedio
+1. **Validador de Contraseñas**
+   - Verificar longitud mínima (8 caracteres)
+   - Debe contener mayúsculas, minúsculas y números
+   - Al menos un carácter especial
+   - No puede contener espacios
+
+2. **Calculadora de Expresiones**
+   - Evaluar expresiones matemáticas básicas
+   - Soportar +, -, *, /
+   - Manejar paréntesis
+   - Ejemplo: "3 + (4 * 2) - 1" = 10
+
+3. **Generador de Patrones**
+   - Crear patrones de asteriscos
+   - Diferentes formas: triángulo, rombo, etc.
+   - Parámetros configurables de tamaño
+
+### Nivel Difícil
+1. **Compresión de Texto**
+   - Implementar algoritmo de compresión RLE
+   - Mostrar ratio de compresión
+   - Ejemplo: "AABBBCCCC" → "2A3B4C"
+
+2. **Juego de la Vida**
+   - Implementar el Juego de la Vida de Conway
+   - Visualización en consola o HTML
+   - Reglas configurables
+
+### Nivel Super Difícil
+1. **Parser JSON**
+   - Implementar un parser JSON básico
+   - Soportar objetos anidados
+   - Manejar arrays y tipos básicos
+
+## 📝 Guía de Resolución
+
+1. **Análisis del Problema**
+   - Leer cuidadosamente el enunciado
+   - Identificar entradas y salidas esperadas
+   - Listar casos especiales
+
+2. **Diseño de la Solución**
+   - Escribir pseudocódigo
+   - Identificar estructuras de datos necesarias
+   - Planear manejo de errores
+
+3. **Implementación**
+   - Seguir buenas prácticas de código
+   - Documentar funciones principales
+   - Usar nombres descriptivos
+
+4. **Pruebas**
+   - Probar casos normales
+   - Probar casos límite
+   - Verificar manejo de errores
+
 ---
-⌨️ con ❤️ por [Tu Nombre](https://github.com/DevCappa) 😊
+⌨️ con ❤️ por [Jose Sequera](https://github.com/DevCappa) 😊DevCappa
